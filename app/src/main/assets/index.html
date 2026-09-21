@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#642149">
+  <meta name="description" content="Calculadora DTF da VITTO Brindes GD">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="CalcDTF">
+  <title>Calculadora DTF — VITTO Brindes GD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="splash" class="splash" aria-hidden="true">
+    <img src="assets/logo-calcdtf.svg" alt="">
+  </div>
+  <main class="app">
+    <section class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand__logo" src="assets/logo-calcdtf.svg" alt="VITTO Brindes CalcDTF">
+          <div class="brand__copy">
+            <h1>Calculadora DTF</h1>
+            <p>VITTO Brindes GD</p>
+            <small>Versão 1.0 • 2026</small>
+          </div>
+        </div>
+        <button id="themeBtn" class="icon-button" type="button" aria-label="Alternar tema" aria-pressed="false">☾</button>
+      </header>
+      <div class="content">
+        <section class="panel panel--carousel" aria-label="Destaques DTF">
+          <div class="carousel" id="carousel">
+            <img id="carouselImage" class="carousel__image" src="assets/dtf_textil.webp" alt="Banner DTF Têxtil">
+            <button id="carouselPrev" class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Imagem anterior">‹</button>
+            <button id="carouselNext" class="carousel__arrow carousel__arrow--next" type="button" aria-label="Próxima imagem">›</button>
+            <div class="carousel__footer">
+              <strong id="carouselCaption">DTF Têxtil</strong>
+              <div class="carousel__dots" aria-label="Slides">
+                <button class="carousel__dot is-active" type="button" data-slide="0" aria-label="Mostrar DTF Têxtil"></button>
+                <button class="carousel__dot" type="button" data-slide="1" aria-label="Mostrar DTF Rígido"></button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <header class="section-head">
+            <h2>Configuração</h2>
+            <span>medidas em cm</span>
+          </header>
+          <div class="segmented" id="typeButtons">
+            <button class="is-active" type="button" data-type="Têxtil">DTF Têxtil</button>
+            <button type="button" data-type="Rígido">DTF Rígido</button>
+          </div>
+          <h3>Tamanho da folha</h3>
+          <div class="sheet-grid" id="sheetButtons">
+            <button class="sheet is-active" type="button" data-sheet="0"><b>20 × 28</b><span>R$ 50,00</span></button>
+            <button class="sheet" type="button" data-sheet="1"><b>28 × 40</b><span>R$ 70,00</span></button>
+            <button class="sheet" type="button" data-sheet="2"><b>28 × 100</b><span>R$ 136,00</span></button>
+            <button class="sheet" type="button" data-sheet="3"><b>57 × 100</b><span>R$ 248,00</span></button>
+          </div>
+          <h3>Tamanho da arte</h3>
+          <div class="input-grid">
+            <label>Largura<input id="artWidth" type="text" inputmode="decimal" value="10" autocomplete="off"></label>
+            <label>Altura<input id="artHeight" type="text" inputmode="decimal" value="10" autocomplete="off"></label>
+          </div>
+          <div class="section-head section-head--spaced">
+            <h3>Sangria por lado</h3>
+            <span>somada nos 4 lados</span>
+          </div>
+          <div class="choice-grid" id="bleedButtons">
+            <button class="is-active" type="button" data-bleed="0.03">0,03</button>
+            <button type="button" data-bleed="0.05">0,05</button>
+            <button type="button" data-bleed="0.08">0,08</button>
+          </div>
+          <h3>Desconto</h3>
+          <div class="discount-grid" id="discountButtons">
+            <button class="is-active" type="button" data-discount="0">0%</button>
+            <button type="button" data-discount="3">3%</button>
+            <button type="button" data-discount="5">5%</button>
+            <button type="button" data-discount="10">10%</button>
+            <button type="button" data-discount="15">15%</button>
+            <button type="button" data-discount="20">20%</button>
+            <button type="button" data-discount="30">30%</button>
+          </div>
+          <div class="section-head section-head--spaced">
+            <h3>Quantidade desejada</h3>
+            <span>opcional</span>
+          </div>
+          <label>Unidades<input id="targetQuantity" type="text" inputmode="numeric" placeholder="Ex.: 100" autocomplete="off"></label>
+          <button id="calculateBtn" class="primary-button" type="button">Calcular aproveitamento</button>
+          <p id="validationMessage" class="validation" role="alert"></p>
+          <p class="note">A calculadora testa a arte normal, girada em 90° e combinações simples de orientação para melhorar o aproveitamento.</p>
+        </section>
+        <section class="panel" aria-live="polite">
+          <header class="section-head">
+            <h2>Resultado</h2>
+            <span id="resultContext">DTF Têxtil • 20 × 28</span>
+          </header>
+          <div class="metrics">
+            <article class="metric metric--main"><small>Artes por folha</small><strong id="fitCount">0</strong><span id="layoutDescription">Informe as medidas da arte</span></article>
+            <article class="metric"><small>Valor da folha</small><strong id="sheetPrice">R$ 0,00</strong><span id="discountDescription">sem desconto</span></article>
+            <article class="metric"><small>Custo por arte</small><strong id="unitPrice">R$ 0,00</strong><span>considerando o desconto</span></article>
+            <article class="metric"><small>Aproveitamento</small><strong id="usagePercent">0%</strong><span>área ocupada estimada</span></article>
+            <article class="metric"><small>Arte + sangria</small><strong id="footprint">—</strong><span>medida usada no encaixe</span></article>
+          </div>
+          <div class="preview-box">
+            <header><b>Prévia de encaixe</b><span>em escala</span></header>
+            <svg id="preview" viewBox="0 0 300 300" role="img" aria-label="Prévia de distribuição das artes na folha"></svg>
+          </div>
+          <div id="orderSummary" class="order-summary" hidden>
+            <h3>Cálculo do pedido</h3>
+            <div class="order-grid">
+              <article><small>Folhas necessárias</small><b id="orderSheets">0</b></article>
+              <article><small>Total a pagar</small><b id="orderTotal">R$ 0,00</b></article>
+              <article><small>Capacidade produzida</small><b id="orderCapacity">0</b></article>
+              <article><small>Sobra estimada</small><b id="orderLeftover">0</b></article>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--compare">
+          <header class="section-head">
+            <h2>Comparar todas as folhas</h2>
+            <span>mesma arte e sangria</span>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Folha</th><th>Artes</th><th>Folha c/ desc.</th><th>Custo/arte</th><th>Uso</th></tr></thead>
+              <tbody id="comparisonBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
