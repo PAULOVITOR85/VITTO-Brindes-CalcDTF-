@@ -9,8 +9,8 @@
   ];
 
   const CAROUSEL = [
-    { src: "assets/dtf_textil.webp", alt: "Banner DTF Têxtil", title: "DTF Têxtil" },
-    { src: "assets/dtf_rigido.webp", alt: "Banner DTF Rígido", title: "DTF Rígido" }
+    { src: "assets/dtf_textil.svg", alt: "Banner DTF Têxtil", title: "DTF Têxtil" },
+    { src: "assets/dtf_rigido.svg", alt: "Banner DTF Rígido", title: "DTF Rígido" }
   ];
 
   const state = { type: "Têxtil", sheetIndex: 0, bleed: 0.03, discount: 0 };
